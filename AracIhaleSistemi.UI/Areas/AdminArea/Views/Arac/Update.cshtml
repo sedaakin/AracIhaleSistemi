@@ -1,0 +1,441 @@
+﻿@using AracIhaleSistemi.UI.ViewModels
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+    AracDurumAddVM durum = new AracDurumAddVM();
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model AracAddVM
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<form method="post">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="card-title">Araç Detay Bilgileri</h6>
+                    <h5 class="card-title"></h5>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    @*Bireysel/Kurumsal*@
+                                    <div class="col">
+                                        Bireysel/Kurumsal
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">
+                                                <div class="form-group row">
+                                                    <div class="col-sm-10">
+                                                        <select asp-for="AracDetayAddVM.BireyselMi" class="form-control" id="bireyselMi">
+                                                            <option>Please select one</option>
+                                                            <option value="1">Bireysel</option>
+                                                            <option value="0">Kurumsal</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                    @*Kurumsal Şirket Adı*@
+                                    <div class="col">
+                                        Kurumsal Şirket Adı
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">
+                                                <div class="form-group row">
+                                                    <div class="col-sm-10">
+                                                        <select class="form-control">
+
+                                                            <option value=""></option>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                    @*Statü*@
+                                    <div class="col">
+                                        Statü
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">
+                                                <div class="form-group row">
+                                                    <div class="col-sm-10">
+                                                        <select class="form-control" id="durum" asp-for="AracDurumAddVM.DurumID"
+                                                                asp-items="@(new SelectList(ViewBag.cmbDurum,"DurumID","DurumAdi"))">
+                                                            <option>Please select one</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                    @*Fiyat*@
+                                    <div class="col">
+                                        Fiyat
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">
+                                                <div class="form-group row">
+                                                    <div class="col-sm-10">
+                                                        <input type="number" asp-for="Fiyat" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="card-title">Araç Ekleme</h6>
+                    <h5 class="card-title"></h5>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    @*Araç Markası*@
+                                    <div class="col">
+                                        Marka
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">
+                                                <div class="form-group row">
+                                                    <div class="col-sm-10">
+                                                        <select asp-for="AracDetayAddVM.Marka" class="form-control" id="marka"
+                                                                asp-items="@(new SelectList(ViewBag.cmbMarka,"AracOzellikID","OzellikAdi"))">
+                                                            <option>Please select one</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+
+
+                                    </div>
+                                    @*Araç Modeli*@
+                                    <div class="col">
+                                        Model
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">
+                                                <div class="form-group row">
+                                                    <div class="col-sm-10">
+                                                        <select asp-for="AracDetayAddVM.Model" class="form-control" id="model"
+                                                                asp-items="@(new SelectList(""))">
+                                                            <option>Please select one</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                    @*Gövde Tipi*@
+                                    <div class="col">
+                                        Gövde Tipi
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">
+                                                <div class="form-group row">
+                                                    <div class="col-sm-10">
+                                                        <select asp-for="AracDetayAddVM.GovdeTipi" class="form-control"
+                                                                asp-items="@(new SelectList(ViewBag.cmbGovde,"AracOzellikID","OzellikAdi"))">
+                                                            <option>Please select one</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                    @*Yıl*@
+                                    <div class="col">
+                                        Yıl
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">
+                                                <div class="form-group row">
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" asp-for="Yil">
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    @*Yakıt Tipi*@
+                                    <div class="col">
+                                        Yakıt Tipi
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">
+                                                <div class="form-group row">
+                                                    <div class="col-sm-10">
+                                                        <select asp-for="AracDetayAddVM.YakitTipi" class="form-control"
+                                                                asp-items="@(new SelectList(ViewBag.cmbYakit,"AracOzellikID","OzellikAdi"))">
+                                                            <option>Please select one</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                    @*Vites Tipi*@
+                                    <div class="col">
+                                        Vites Tipi
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">
+                                                <div class="form-group row">
+                                                    <div class="col-sm-10">
+                                                        <select asp-for="AracDetayAddVM.VitesTipi" class="form-control"
+                                                                asp-items="@(new SelectList(ViewBag.cmbVites,"AracOzellikID","OzellikAdi"))">
+                                                            <option>Please select one</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                    @*Version*@
+                                    <div class="col">
+                                        Version
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">
+                                                <div class="form-group row">
+                                                    <div class="col-sm-10">
+                                                        <select asp-for="AracDetayAddVM.Versiyon" class="form-control"
+                                                                asp-items="@(new SelectList(ViewBag.cmbVersion,"AracOzellikID","OzellikAdi"))">
+                                                            <option>Please select one</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                    @*Kilometre Bilgisi*@
+                                    <div class="col">
+                                        Km Bilgisi
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">
+                                                <div class="form-group row">
+                                                    <div class="col-sm-10">
+                                                        <input class="form-control" type="number" asp-for="Km" />
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    @*Renk*@
+                                    <div class="col">
+                                        Renk
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">
+                                                <div class="form-group row">
+                                                    <div class="col-sm-10">
+                                                        <select asp-for="AracDetayAddVM.Renk" class="form-control"
+                                                                asp-items="@(new SelectList(ViewBag.cmbRenk,"AracOzellikID","OzellikAdi"))">
+                                                            <option>Please select one</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                    @*Donanım*@
+                                    <div class="col">
+                                        Donanım
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">
+                                                <div class="form-group row">
+                                                    <div class="col-sm-10">
+                                                        <select asp-for="AracDetayAddVM.OpsiyonelDonanim" class="form-control" id="marka" multiple=""
+                                                                asp-items="@(new SelectList(ViewBag.cmbDonanım,"AracOzellikID","OzellikAdi"))">
+                                                            <option>Please select one</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                @*Fotograf*@
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="formFileMultiple" class="form-label">Foto Ekle</label>
+                                        <input class="form-control" type="file" id="formFileMultiple" multiple asp-for="AracDetayAddVM.Resim">
+                                    </div>
+                                    <div class="col">
+                                        <label for="floatingTextarea2">Açıklama</label>
+
+                                        @Html.TextArea("Aciklama", new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-body" disabled>
+                    <br />
+                    <button type="button" class="btn btn-primary">Hemen Al Satış</button>
+                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#komisyonModal">Komisyon</button>
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#tarihceModal">Araç Tarihçe</button>
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#aliciModal">Alıcı Bilgileri Ekle</button>
+                    <button class="btn btn-info" href="" type="button" data-toggle="modal" data-target="#ilanModal">İlan Bilgileri Ekle</button>
+                    <button class="btn btn-warning" href="" type="button" data-toggle="modal" data-target="#tramerModal">Tramer Bilgileri Ekle</button>
+
+                    <button type="submit" class="btn btn-dark">Kaydet</button>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="ilanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">İlan Bilgileri</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">İlan Başlığı:</label>
+                            <input type="text" class="form-control" id="recipient-name" @*asp-for="IlanAddVM.IlanBasligi"*@>
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">İlan Açıklama:</label>
+                            <textarea class="form-control" id="message-text" @*asp-for="IlanAddVM.IlanAciklama"*@></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                        <button type="button" class="btn btn-primary">Kaydet</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="tarihceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Araç Tarihçe</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        tarihçe satırlarıı
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="aliciModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Alıcı Bilgileri</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        satılan araç için alıcı bilgileri
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="komisyonModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Alıcı Bilgileri</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        kaydedilen araç için komisyon
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<script>
+    $(document).ready(function () {
+        $('#marka').change(function () {
+            var marka = $(this).val();
+            $.ajax({
+                type: "post",
+                url: "ModelGetir?markaId=" + marka,
+                contentType: "html",
+                success: function (response) {
+                    console.log(response);
+                    $("#model").empty()
+                    $('#model').append('<option>Please select one</option>')
+                    $.each(response, function (i, item) {
+
+                        console.log(item);
+                        $('#model').append($('<option>', {
+                            value: item.value,
+                            text: item.text
+                        }));
+                    });
+                }
+            })
+        });
+    });
+</script>

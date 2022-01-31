@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+@model AracIhaleSistemi.UI.ViewModels.NoterVM
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<form method="post">
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputEmail4">Başlangıç Tarihi</label>
+            <input type="date" class="form-control" asp-for="BaslangicTarihi">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputPassword4">Bitiş Tarihi</label>
+            <input type="date" class="form-control" id="inputPassword4" asp-for="BitisTarihi">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="inputName">Noter Ücreti Tutarı</label>
+        <input type="number" class="form-control" id="inputName" asp-for="NoterUcreti">
+    </div>
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+</form>

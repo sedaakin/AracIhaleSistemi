@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+@model AracIhaleSistemi.UI.ViewModels.UyeAddVM
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<form method="post">
+    <div class="form-group">
+        <label for="inputName">Ad Soyad</label>
+        <input type="text" class="form-control" id="inputName" placeholder="Ad Soyad" asp-for="AdSoyad">
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputEmail4">Email</label>
+            <input type="email" class="form-control" placeholder="Email" asp-for="Email">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputPassword4">Password</label>
+            <input type="password" class="form-control" id="inputPassword4" placeholder="Şifre" asp-for="Sifre">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputTel">Telefon</label>
+        <input type="text" class="form-control" id="inputTel" placeholder="Telefon" asp-for="Telefon">
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputCity">Rolü</label>
+            <select asp-for="RolID" class="form-control" id="rol"
+                    asp-items="@(new SelectList(ViewBag.cmbRol,"RolID","Rol1"))">
+                <option>Please select one</option>
+            </select>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="inputState">Aktif Mi?</label>
+            <input type="checkbox" asp-for="AktifMi" />
+        </div>
+
+    </div>
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+</form>
